@@ -4,7 +4,7 @@
 - 👀 I’m interested in fullstack web development
 - 🌱 I’m currently learning react.js
 
-- 📫 How to reach me guptavishnu2711@gmail.com
+- 📫 Reach me guptavishnu2711@gmail.com
 
 <h1 align="center">Hi 👋, I'm Vishnu Gupta</h1>
 <h3 align="center">A passionate frontend developer from India</h3>
@@ -18,7 +18,7 @@
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 
-<a href="https://linkedin.com/in/https://www.linkedin.com/in/vishnu-gupta-485910293/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://www.linkedin.com/in/vishnu-gupta-485910293/" height="30" width="40" /></a>
+<a href="https://www.linkedin.com/in/vishnu-gupta-485910293/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://www.linkedin.com/in/vishnu-gupta-485910293/" height="30" width="40" /></a>
 
 </p>
 
