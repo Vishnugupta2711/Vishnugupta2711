@@ -16,9 +16,6 @@
 <br>
 
 <!-- Animated Trophies -->
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=vishnugupta2711&theme=radical&row=1&column=6&margin-w=15&no-bg=true" alt="vishnugupta2711" />
-</p>
 
 <!-- Animated Divider -->
 <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="100%">
