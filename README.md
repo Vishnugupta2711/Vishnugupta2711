@@ -1,11 +1,23 @@
-<!-- Animated Header with Typing Effect -->
+<!-- 🌟 Professional Animated Header -->
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/225813708-98b745f2-7d22-48cf-9150-083f1b00d6c9.gif" alt="coding" width="1000">
-</div>
 
-<h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=40&pause=1000&color=39FF14&center=true&vCenter=true&random=false&width=600&height=70&lines=Hi+There!+%F0%9F%91%8B;I'm+Vishnu+Gupta;Full-Stack+Developer;AI+%26+IoT+Enthusiast" alt="Typing SVG" />
-</h1>
+  <!-- Animated Banner -->
+  <img src="https://user-images.githubusercontent.com/74038190/225813708-98b745f2-7d22-48cf-9150-083f1b00d6c9.gif" alt="Coding Animation" width="1000"/>
+
+  <!-- Typing Introduction -->
+  <h1 align="center">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=36&pause=1000&color=00FFB3&center=true&vCenter=true&random=false&width=600&lines=Hi+There!+👋;I'm+Vishnu+Gupta;Full-Stack+Developer;AI+%26+IoT+Enthusiast" alt="Typing SVG" />
+  </h1>
+
+  <!-- Holopin Badges -->
+  <a href="https://holopin.io/@vishnugupta2711" target="_blank">
+    <img src="https://holopin.me/vishnugupta2711" alt="Vishnu Gupta's Holopin Badges" width="700"/>
+  </a>
+
+  <!-- Horizontal Divider -->
+  <hr style="border: 1px solid #00FFB3; width: 80%; margin: 20px auto;" />
+
+</div>
 
 <h3 align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=25&pause=1000&color=00BFFF&center=true&vCenter=true&random=false&width=600&height=50&lines=A+passionate+developer+from+India;Building+the+future+with+code;MERN+Stack+%7C+AI%2FML+%7C+IoT" alt="Description Typing" />
