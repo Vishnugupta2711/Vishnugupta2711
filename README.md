@@ -149,29 +149,28 @@ Location    : India 🇮🇳
 
 ---
 
-## 📊 GitHub Stats
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=Vishnugupta2711&theme=tokyonight&hide_border=true&show_icons=true&count_private=true&rank_icon=github" height="180"/>
-&nbsp;&nbsp;
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=Vishnugupta2711&theme=tokyonight&hide_border=true" height="180"/>
-
-<br/><br/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Vishnugupta2711&layout=compact&theme=tokyonight&hide_border=true&langs_count=8"/>
-
-<br/><br/>
-
-<!-- Trophy Shelf -->
-<img src="https://github-profile-trophy.vercel.app/?username=Vishnugupta2711&theme=tokyonight&no-frame=true&column=7&margin-w=5"/>
-
-</div>
-
-<img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="100%">
-
 ---
 
+# 📊 GitHub Stats
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=Vishnugupta2711&theme=tokyonight&hide_border=true" />
+    </td>
+    <td>
+      <img src="https://streak-stats.demolab.com?user=Vishnugupta2711&theme=tokyonight&hide_border=true" />
+    </td>
+    <td>
+      <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Vishnugupta2711&theme=tokyonight&hide_border=true&layout=compact" />
+    </td>
+  </tr>
+</table>
+
+### ✍️ Random Dev Quote
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
+
+---
 ## 🔥 Contribution Graph
 
 <div align="center">
