@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 12" width="1200" height="12">
+  <defs>
+    <linearGradient id="glowLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(108,99,255,0)"/>
+      <stop offset="15%" stop-color="rgba(108,99,255,0.1)"/>
+      <stop offset="50%" stop-color="rgba(108,99,255,0.5)"/>
+      <stop offset="85%" stop-color="rgba(0,212,255,0.1)"/>
+      <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
+    </linearGradient>
+    <filter id="lineGlow" x="-10%" y="-200%" width="120%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <linearGradient id="dotGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6C63FF"/>
+      <stop offset="100%" stop-color="#00D4FF"/>
+    </linearGradient>
+  </defs>
+  <style>
+    @keyframes moveDot { 0% { cx: 0; } 100% { cx: 1200; } }
+    @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+    .traveling-dot { animation: pulse 1.5s ease-in-out infinite; }
+  </style>
+  <rect width="1200" height="12" fill="transparent"/>
+  <line x1="0" y1="6" x2="1200" y2="6" stroke="url(#glowLine)" stroke-width="1" filter="url(#lineGlow)"/>
+  <line x1="0" y1="6" x2="1200" y2="6" stroke="url(#glowLine)" stroke-width="0.3"/>
+  <!-- Accent dots -->
+  <circle cx="300" cy="6" r="1.5" fill="url(#dotGrad)" class="traveling-dot"/>
+  <circle cx="600" cy="6" r="2" fill="url(#dotGrad)" class="traveling-dot" style="animation-delay:0.5s"/>
+  <circle cx="900" cy="6" r="1.5" fill="url(#dotGrad)" class="traveling-dot" style="animation-delay:1s"/>
+</svg>
