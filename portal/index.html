@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vishnu Gupta — Universe</title>
+  <meta name="description" content="Software Engineer · AI Builder · Systems Architect. Research Intern @ Samsung PRISM. IEEE Published Researcher. Building systems that think, scale, and endure."/>
+  <meta name="author" content="Vishnu Gupta"/>
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Vishnu Gupta — Universe"/>
+  <meta property="og:description" content="Software Engineer · AI Builder · Systems Architect"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ══════════════════════════════════════════════════════════════════
+       DESIGN TOKENS
+       ══════════════════════════════════════════════════════════════════ */
+    :root {
+      --primary: #6C63FF;
+      --primary-rgb: 108, 99, 255;
+      --secondary: #00D4FF;
+      --secondary-rgb: 0, 212, 255;
+      --accent: #FF6B6B;
+      --accent-rgb: 255, 107, 107;
+      --success: #00E676;
+      --success-rgb: 0, 230, 118;
+      --warning: #FFD93D;
+
+      --bg-deep: #050508;
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #0d1117;
+      --bg-surface: #161b22;
+      --bg-card: rgba(22, 27, 34, 0.6);
+
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #484f58;
+
+      --border: rgba(108, 99, 255, 0.15);
+      --border-hover: rgba(108, 99, 255, 0.4);
+
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+
+      --font-primary: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+
+      --shadow-glow: 0 0 40px rgba(var(--primary-rgb), 0.15);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       RESET & BASE
+       ══════════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: var(--primary); text-decoration: none; transition: color var(--transition-fast); }
+    a:hover { color: var(--secondary); }
+
+    ::selection { background: rgba(var(--primary-rgb), 0.3); color: #fff; }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SCROLL PROGRESS BAR
+       ══════════════════════════════════════════════════════════════════ */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      z-index: 10000;
+      transition: width 0.1s linear;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(5, 5, 8, 0.7);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all var(--transition-smooth);
+    }
+    .nav.scrolled { padding: 10px 32px; background: rgba(5, 5, 8, 0.9); }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 2px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width var(--transition-smooth);
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ══════════════════════════════════════════════════════════════════
+       THREE.JS CANVAS
+       ══════════════════════════════════════════════════════════════════ */
+    #stars-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       HERO SECTION
+       ══════════════════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeInDown 1s ease 0.2s both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--primary), #a78bfa, var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+    .hero-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 1s ease 0.8s both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: var(--radius-xl);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #8b7cf7);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(var(--primary-rgb), 0.5);
+      color: #fff;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.05);
+      transform: translateY(-2px);
+      color: var(--text-primary);
+    }
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeInUp 1s ease 1.2s both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    .scroll-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SECTIONS
+       ══════════════════════════════════════════════════════════════════ */
+    .section {
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--primary);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       ABOUT TERMINAL
+       ══════════════════════════════════════════════════════════════════ */
+    .terminal {
+      background: rgba(13, 17, 23, 0.8);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      max-width: 750px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(10px);
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: rgba(22, 27, 34, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .terminal-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .terminal-dot.red { background: #ff5f57; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #28ca41; }
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .terminal-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    .terminal-body .key { color: var(--secondary); }
+    .terminal-body .val { color: var(--text-primary); }
+    .terminal-body .comment { color: var(--text-muted); font-style: italic; }
+    .terminal-body .highlight { color: var(--primary); font-weight: 600; }
+    .terminal-body .accent { color: var(--accent); }
+    .terminal-body .success { color: var(--success); }
+
+    /* ══════════════════════════════════════════════════════════════════
+       PROJECT CARDS
+       ══════════════════════════════════════════════════════════════════ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition-smooth);
+      backdrop-filter: blur(10px);
+      cursor: default;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .project-title a { color: var(--text-primary); }
+    .project-title a:hover { color: var(--primary); }
+    .project-role {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .project-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .metric {
+      text-align: center;
+      padding: 10px 8px;
+      background: var(--glass);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--glass-border);
+    }
+    .metric-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      background: rgba(var(--primary-rgb), 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(var(--primary-rgb), 0.15);
+    }
+    .project-links { display: flex; gap: 8px; }
+    .project-link {
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .project-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       TECH STACK
+       ══════════════════════════════════════════════════════════════════ */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .tech-category {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-smooth);
+    }
+    .tech-category:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .tech-category-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .tech-items { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-item {
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      transition: all var(--transition-fast);
+    }
+    .tech-item:hover {
+      border-color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.08);
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       ACHIEVEMENTS TIMELINE
+       ══════════════════════════════════════════════════════════════════ */
+    .achievements-list { max-width: 700px; margin: 0 auto; }
+    .achievement-item {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--glass-border);
+      transition: all var(--transition-fast);
+    }
+    .achievement-item:last-child { border-bottom: none; }
+    .achievement-item:hover { padding-left: 8px; }
+    .achievement-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 40px;
+      text-align: center;
+    }
+    .achievement-content { flex: 1; }
+    .achievement-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .achievement-detail {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .achievement-scale {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       PUBLICATION
+       ══════════════════════════════════════════════════════════════════ */
+    .pub-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 750px;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .pub-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00629B, var(--primary), var(--secondary));
+    }
+    .pub-venue {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .pub-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .pub-authors {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .pub-abstract {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       CERTIFICATIONS
+       ══════════════════════════════════════════════════════════════════ */
+    .certs-grid {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 20px 28px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-smooth);
+      min-width: 200px;
+    }
+    .cert-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
+    }
+    .cert-logo { font-size: 32px; margin-bottom: 12px; }
+    .cert-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .cert-org { font-size: 12px; color: var(--text-muted); }
+
+    /* ══════════════════════════════════════════════════════════════════
+       CONTACT / FOOTER
+       ══════════════════════════════════════════════════════════════════ */
+    .footer {
+      text-align: center;
+      padding: 80px 24px;
+      border-top: 1px solid var(--glass-border);
+    }
+    .footer-quote {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+    .footer-links { display: flex; gap: 16px; justify-content: center; margin-bottom: 32px; }
+    .footer-link {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      font-size: 18px;
+      transition: all var(--transition-smooth);
+    }
+    .footer-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.2);
+    }
+    .footer-credit {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       ANIMATIONS
+       ══════════════════════════════════════════════════════════════════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(var(--success-rgb), 0.4); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(var(--success-rgb), 0); }
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .section { padding: 60px 16px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .hero { padding: 100px 16px 60px; }
+      .hero-title { letter-spacing: -1px; }
+      .project-metrics { grid-template-columns: repeat(2, 1fr); }
+      .terminal-body { padding: 16px; font-size: 12px; }
+      .pub-card { padding: 24px; }
+      .certs-grid { flex-direction: column; align-items: center; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       CUSTOM CURSOR GLOW (subtle)
+       ══════════════════════════════════════════════════════════════════ */
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--primary-rgb), 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Three.js Canvas -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">VG://</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Systems</a></li>
+      <li><a href="#tech">Tech</a></li>
+      <li><a href="#achievements">Log</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="https://github.com/Vishnugupta2711" target="_blank">GitHub ↗</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Open to Opportunities
+    </div>
+    <h1 class="hero-title">
+      <span class="gradient-text">Vishnu Gupta</span>
+    </h1>
+    <p class="hero-subtitle">
+      Software Engineer · AI Builder · Systems Architect<br/>
+      Building systems that think, scale, and endure.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/Vishnugupta2711" class="btn btn-primary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/vishnugupta2711/" class="btn btn-outline" target="_blank">LinkedIn</a>
+      <a href="https://guptavishn2711.vercel.app/" class="btn btn-outline" target="_blank">Portfolio</a>
+      <a href="mailto:guptavishnu2711@gmail.com" class="btn btn-outline">Contact</a>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       ABOUT
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="section-divider"></div>
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <span class="section-tag">◉ Mission Briefing</span>
+      <h2 class="section-title">About Me</h2>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-header">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+        <span class="terminal-title">vishnu@universe ~ /identity</span>
+      </div>
+      <div class="terminal-body">
+        <span class="comment"># ━━━ OPERATIVE PROFILE ━━━</span><br/><br/>
+        <span class="key">name:</span> <span class="val">Vishnu Gupta</span><br/>
+        <span class="key">location:</span> <span class="val">Kanpur, India</span><br/>
+        <span class="key">education:</span> <span class="val">B.Tech CSE @ SRM Institute</span> <span class="comment">(CGPA: 9.43)</span><br/>
+        <span class="key">graduation:</span> <span class="val">May 2027</span><br/><br/>
+        <span class="comment"># ━━━ CURRENT MISSION ━━━</span><br/><br/>
+        <span class="key">role:</span> <span class="highlight">Research Intern @ Samsung PRISM</span><br/>
+        <span class="key">objective:</span> <span class="val">Schema-aware RAG pipelines for enterprise NL2SQL</span><br/>
+        <span class="key">impact:</span> <span class="success">30% retrieval improvement · 10K+ records structured</span><br/><br/>
+        <span class="comment"># ━━━ RESEARCH OUTPUT ━━━</span><br/><br/>
+        <span class="key">paper:</span> <span class="val">"Real-Time Medical Waste Segregation using ViTs"</span><br/>
+        <span class="key">venue:</span> <span class="accent">IEEE CICCS-2025 (First Author)</span><br/><br/>
+        <span class="comment"># ━━━ COMBAT RECORD ━━━</span><br/><br/>
+        <span class="key">hackathons_won:</span> <span class="success">3</span> &nbsp; <span class="key">top_finishes:</span> <span class="success">5</span><br/>
+        <span class="key">problems_solved:</span> <span class="val">400+</span> &nbsp; <span class="key">global_rank:</span> <span class="highlight">499 / 537K+</span><br/>
+        <span class="key">certifications:</span> <span class="val">AWS ×2, Oracle OCI GenAI</span><br/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       PROJECTS
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="section-divider"></div>
+  <section class="section" id="projects">
+    <div class="section-header reveal">
+      <span class="section-tag">◎ Systems Deployed</span>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Each system is a mission — engineered from research to deployment.</p>
+    </div>
+    <div class="projects-grid">
+
+      <!-- RateSentry -->
+      <div class="project-card reveal">
+        <div class="project-icon">🛡️</div>
+        <div class="project-title"><a href="https://github.com/Vishnugupta2711/ratesentry" target="_blank">RateSentry</a></div>
+        <div class="project-role">Distributed Rate Limiter & API Gateway</div>
+        <p class="project-desc">Production-grade distributed rate limiter using Redis-backed sliding-window counters and atomic Lua scripts for race-condition-free throttling across AWS EC2.</p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-value">237</span><span class="metric-label">RPS</span></div>
+          <div class="metric"><span class="metric-value">420ms</span><span class="metric-label">p99 Latency</span></div>
+          <div class="metric"><span class="metric-value">5,710</span><span class="metric-label">Rate Limits</span></div>
+          <div class="metric"><span class="metric-value">Zero</span><span class="metric-label">Counter Drift</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">Prometheus</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Vishnugupta2711/ratesentry" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="https://vishnugupta2711.github.io/ratesentry/" class="project-link" target="_blank">Docs ↗</a>
+        </div>
+      </div>
+
+      <!-- ROSE-V2 -->
+      <div class="project-card reveal">
+        <div class="project-icon">🧬</div>
+        <div class="project-title"><a href="https://github.com/Vishnugupta2711/Real-time-medical-waste-segregation-using-transformers-and-edge-AI-solutions.git" target="_blank">ROSE-V2 / EcoVision</a></div>
+        <div class="project-role">Edge AI · IEEE Published · Hackathon Winner</div>
+        <p class="project-desc">Task-aware encoder-decoder compression for edge-cloud medical waste classification. Won Tem-E-thon 2025 and published at IEEE CICCS-2025.</p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-value">98%</span><span class="metric-label">Accuracy</span></div>
+          <div class="metric"><span class="metric-value">52%</span><span class="metric-label">Payload Cut</span></div>
+          <div class="metric"><span class="metric-value">3×</span><span class="metric-label">Faster E2E</span></div>
+          <div class="metric"><span class="metric-value">IEEE</span><span class="metric-label">Published</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">PyTorch</span><span class="tag">MobileViTv3</span><span class="tag">FastAPI</span><span class="tag">Raspberry Pi</span><span class="tag">HuggingFace</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Vishnugupta2711/Real-time-medical-waste-segregation-using-transformers-and-edge-AI-solutions.git" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="https://www.youtube.com/shorts/wnGDNTNKzoQ" class="project-link" target="_blank">Demo ↗</a>
+          <a href="https://ieeexplore.ieee.org/document/11280024" class="project-link" target="_blank">Paper ↗</a>
+        </div>
+      </div>
+
+      <!-- Casefile -->
+      <div class="project-card reveal">
+        <div class="project-icon">🕵️</div>
+        <div class="project-title"><a href="https://github.com/Vishnugupta2711/casefile" target="_blank">Casefile</a></div>
+        <div class="project-role">Multi-Agent Enterprise Investigation</div>
+        <p class="project-desc">7-agent LangGraph framework for evidence-grounded reasoning over heterogeneous data using hybrid FAISS + BM25 + RRF retrieval.</p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-value">7</span><span class="metric-label">Agents</span></div>
+          <div class="metric"><span class="metric-value">4</span><span class="metric-label">Configs Tested</span></div>
+          <div class="metric"><span class="metric-value">Hybrid</span><span class="metric-label">Retrieval</span></div>
+          <div class="metric"><span class="metric-value">Grounded</span><span class="metric-label">Citations</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">LangGraph</span><span class="tag">FAISS</span><span class="tag">BM25</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">FastAPI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Vishnugupta2711/casefile" class="project-link" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- MLGuard -->
+      <div class="project-card reveal">
+        <div class="project-icon">📊</div>
+        <div class="project-title"><a href="https://github.com/Vishnugupta2711/DATA_DRIEF_MONITOR" target="_blank">MLGuard</a></div>
+        <div class="project-role">ML Observability & Data Drift Intelligence</div>
+        <p class="project-desc">Unified drift detection combining KS testing, Chi-Square, PSI, and transformer-based semantic similarity with LLM-powered explainability.</p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-value">4</span><span class="metric-label">Signals</span></div>
+          <div class="metric"><span class="metric-value">3</span><span class="metric-label">Shift Types</span></div>
+          <div class="metric"><span class="metric-value">LLM</span><span class="metric-label">Root-Cause</span></div>
+          <div class="metric"><span class="metric-value">Auto</span><span class="metric-label">Remediation</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Transformers</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Vishnugupta2711/DATA_DRIEF_MONITOR" class="project-link" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Samsung PRISM -->
+      <div class="project-card reveal">
+        <div class="project-icon">🧠</div>
+        <div class="project-title"><a href="https://github.com/Vishnugupta2711/GEN_AI_QueryBasedReports" target="_blank">Samsung PRISM — RAG System</a></div>
+        <div class="project-role">Schema-Aware NL2SQL Pipeline</div>
+        <p class="project-desc">Research internship building a RAG-based enterprise reporting system that transforms natural-language queries into SQL via semantic retrieval.</p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-value">30%</span><span class="metric-label">Better Retrieval</span></div>
+          <div class="metric"><span class="metric-value">10K+</span><span class="metric-label">Records</span></div>
+          <div class="metric"><span class="metric-value">Hrs→Min</span><span class="metric-label">Report Time</span></div>
+          <div class="metric"><span class="metric-value">Multi</span><span class="metric-label">DB Support</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">Gemini</span><span class="tag">MiniLM</span><span class="tag">SQLAlchemy</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Vishnugupta2711/GEN_AI_QueryBasedReports" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="https://www.youtube.com/watch?v=5Ied6-Ck5FE" class="project-link" target="_blank">Demo ↗</a>
+        </div>
+      </div>
+
+      <!-- AURA++ -->
+      <div class="project-card reveal">
+        <div class="project-icon">💚</div>
+        <div class="project-title"><a href="https://github.com/ak8057/mental_health_v1.0.git" target="_blank">AURA++</a></div>
+        <div class="project-role">Accessible AI Mental Health · HackZ'24 Runner-Up</div>
+        <p class="project-desc">Multimodal mental health platform with NLP conversational AI, VR therapy, IoT vitals, and gesture-based navigation. Led 4-member team.</p>
+        <div class="project-metrics">
+          <div class="metric"><span class="metric-value">NLP</span><span class="metric-label">Sentiment AI</span></div>
+          <div class="metric"><span class="metric-value">VR</span><span class="metric-label">Therapy</span></div>
+          <div class="metric"><span class="metric-value">IoT</span><span class="metric-label">Vitals</span></div>
+          <div class="metric"><span class="metric-value">1st RU</span><span class="metric-label">HackZ'24</span></div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Flask</span><span class="tag">NLP</span><span class="tag">Three.js</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/ak8057/mental_health_v1.0.git" class="project-link" target="_blank">GitHub ↗</a>
+          <a href="https://www.youtube.com/watch?v=cBjXdItvFVY" class="project-link" target="_blank">Demo ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       TECH STACK
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="section-divider"></div>
+  <section class="section" id="tech">
+    <div class="section-header reveal">
+      <span class="section-tag">◉ Command Deck</span>
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-subtitle">Battle-tested tools in the arsenal.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-category reveal">
+        <div class="tech-category-title">Languages</div>
+        <div class="tech-items">
+          <span class="tech-item">C++</span><span class="tech-item">Python</span><span class="tech-item">JavaScript</span><span class="tech-item">C</span><span class="tech-item">SQL</span><span class="tech-item">Java</span>
+        </div>
+      </div>
+      <div class="tech-category reveal">
+        <div class="tech-category-title">AI / ML / LLMs</div>
+        <div class="tech-items">
+          <span class="tech-item">PyTorch</span><span class="tech-item">TensorFlow</span><span class="tech-item">OpenCV</span><span class="tech-item">Hugging Face</span><span class="tech-item">scikit-learn</span><span class="tech-item">LangChain</span><span class="tech-item">LangGraph</span><span class="tech-item">ChromaDB</span><span class="tech-item">FAISS</span><span class="tech-item">Gemini</span>
+        </div>
+      </div>
+      <div class="tech-category reveal">
+        <div class="tech-category-title">Backend & Frameworks</div>
+        <div class="tech-items">
+          <span class="tech-item">FastAPI</span><span class="tech-item">Node.js</span><span class="tech-item">Express</span><span class="tech-item">Flask</span><span class="tech-item">React</span><span class="tech-item">Next.js</span><span class="tech-item">Vite</span><span class="tech-item">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="tech-category reveal">
+        <div class="tech-category-title">Databases & Caching</div>
+        <div class="tech-items">
+          <span class="tech-item">PostgreSQL</span><span class="tech-item">MongoDB</span><span class="tech-item">MySQL</span><span class="tech-item">Redis</span>
+        </div>
+      </div>
+      <div class="tech-category reveal">
+        <div class="tech-category-title">Cloud & DevOps</div>
+        <div class="tech-items">
+          <span class="tech-item">AWS (EC2, ElastiCache, ALB)</span><span class="tech-item">Docker</span><span class="tech-item">Git</span><span class="tech-item">Linux</span><span class="tech-item">Prometheus</span><span class="tech-item">Raspberry Pi</span>
+        </div>
+      </div>
+      <div class="tech-category reveal">
+        <div class="tech-category-title">Evaluation & MLOps</div>
+        <div class="tech-items">
+          <span class="tech-item">RAGAS</span><span class="tech-item">Recall@K</span><span class="tech-item">NDCG</span><span class="tech-item">KS Test</span><span class="tech-item">Chi-Square</span><span class="tech-item">PSI</span><span class="tech-item">Locust</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       ACHIEVEMENTS
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="section-divider"></div>
+  <section class="section" id="achievements">
+    <div class="section-header reveal">
+      <span class="section-tag">◎ Mission Log</span>
+      <h2 class="section-title">Achievements</h2>
+      <p class="section-subtitle">Engagements. Victories. Evidence.</p>
+    </div>
+    <div class="achievements-list">
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">🌍</div>
+        <div class="achievement-content">
+          <div class="achievement-title">TCS CodeVita Season 12</div>
+          <div class="achievement-detail">Global Rank <strong>499</strong></div>
+        </div>
+        <div class="achievement-scale">537K+ registrants</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">🎓</div>
+        <div class="achievement-content">
+          <div class="achievement-title">Amazon ML Summer School 2026</div>
+          <div class="achievement-detail">Selected for prestigious ML program</div>
+        </div>
+        <div class="achievement-scale">Cohort 2026</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">🥇</div>
+        <div class="achievement-content">
+          <div class="achievement-title">Tem-E-thon 2025 — Winner</div>
+          <div class="achievement-detail">24-hour hackathon by Temenos</div>
+        </div>
+        <div class="achievement-scale">Top 30 / 1,000+</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">🥇</div>
+        <div class="achievement-content">
+          <div class="achievement-title">SRiJAN 2026 — Winner</div>
+          <div class="achievement-detail">Data & AI Track</div>
+        </div>
+        <div class="achievement-scale">University</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">🏅</div>
+        <div class="achievement-content">
+          <div class="achievement-title">Barclays HACK-O-HIRE 2025</div>
+          <div class="achievement-detail">Top 8 Finalist</div>
+        </div>
+        <div class="achievement-scale">National</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">🥈</div>
+        <div class="achievement-content">
+          <div class="achievement-title">HackZ'24 — 1st Runner-Up</div>
+          <div class="achievement-detail">Anna University</div>
+        </div>
+        <div class="achievement-scale">Top 20 / 500+</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">💻</div>
+        <div class="achievement-content">
+          <div class="achievement-title">LeetCode</div>
+          <div class="achievement-detail">Contest Rating <strong>1,675</strong> (Top 15.89%)</div>
+        </div>
+        <div class="achievement-scale">400+ solved</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       RESEARCH & CERTIFICATIONS
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="section-divider"></div>
+  <section class="section" id="research">
+    <div class="section-header reveal">
+      <span class="section-tag">◈ Research Transmissions</span>
+      <h2 class="section-title">Publication</h2>
+    </div>
+    <div class="pub-card reveal">
+      <div class="pub-venue">IEEE CICCS-2025 · First Author</div>
+      <div class="pub-title">"Real-Time Medical Waste Segregation using Vision Transformers and Edge AI Solutions"</div>
+      <div class="pub-authors"><strong>V. Gupta et al.</strong> — First International Conference on Intelligent Computing and Communication Systems, IEEE, 2025</div>
+      <p class="pub-abstract">Proposed ROSE-V2, a task-aware encoder-decoder compression framework for edge-cloud medical waste classification. Benchmarked 7+ autoencoder baselines and 5 Vision Transformer architectures on a 13-class, 6,156-image dataset. Achieved 52% payload reduction and 3× faster end-to-end inference.</p>
+      <a href="https://ieeexplore.ieee.org/document/11280024" class="btn btn-primary" target="_blank">Read on IEEE Xplore ↗</a>
+    </div>
+
+    <br/><br/>
+
+    <div class="section-header reveal">
+      <span class="section-tag">Clearance Badges</span>
+      <h2 class="section-title" style="font-size: 1.8rem;">Certifications</h2>
+    </div>
+    <div class="certs-grid reveal">
+      <a href="https://www.credly.com/badges/77a63626-7191-40cc-b812-2ae52eec6754" class="cert-card" target="_blank">
+        <div class="cert-logo">☁️</div>
+        <div class="cert-name">AI Practitioner</div>
+        <div class="cert-org">AWS Certified</div>
+      </a>
+      <a href="https://www.credly.com/earner/earned/badge/a9b54ec9-24c9-4063-8450-0f44fc6af563" class="cert-card" target="_blank">
+        <div class="cert-logo">☁️</div>
+        <div class="cert-name">Cloud Practitioner</div>
+        <div class="cert-org">AWS Certified</div>
+      </a>
+      <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=DA85DD5707950BDD3F093517DE009BA03E265786A23B11822FE1119AFA1D25C8" class="cert-card" target="_blank">
+        <div class="cert-logo">🔮</div>
+        <div class="cert-name">GenAI Professional</div>
+        <div class="cert-org">Oracle OCI 2025</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <p class="footer-quote">"The universe is under no obligation to make sense to you. But it rewards those who build within it."</p>
+    <div class="footer-links">
+      <a href="https://github.com/Vishnugupta2711" class="footer-link" target="_blank" title="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/vishnugupta2711/" class="footer-link" target="_blank" title="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:guptavishnu2711@gmail.com" class="footer-link" target="_blank" title="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+      </a>
+      <a href="https://guptavishn2711.vercel.app/" class="footer-link" target="_blank" title="Portfolio">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      </a>
+    </div>
+    <p class="footer-credit">Designed & Built by Vishnu Gupta · 2025</p>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════════════════ -->
+  <script>
+    // ─── THREE.JS STARFIELD ─────────────────────────────────────────
+    (function() {
+      const canvas = document.getElementById('stars-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height, stars = [], mouse = { x: 0, y: 0 };
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      function createStars(count) {
+        stars = [];
+        for (let i = 0; i < count; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 1.5 + 0.3,
+            speed: Math.random() * 0.3 + 0.05,
+            opacity: Math.random() * 0.8 + 0.2,
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            twinklePhase: Math.random() * Math.PI * 2,
+            color: Math.random() > 0.7 ? `rgba(108, 99, 255, ` : Math.random() > 0.5 ? `rgba(0, 212, 255, ` : `rgba(255, 255, 255, `
+          });
+        }
+      }
+
+      function drawStar(star, time) {
+        const twinkle = Math.sin(time * star.twinkleSpeed + star.twinklePhase) * 0.3 + 0.7;
+        const finalOpacity = star.opacity * twinkle;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = star.color + finalOpacity + ')';
+        ctx.fill();
+      }
+
+      function drawConnections() {
+        const threshold = 120;
+        for (let i = 0; i < stars.length; i++) {
+          for (let j = i + 1; j < stars.length; j++) {
+            const dx = stars[i].x - stars[j].x;
+            const dy = stars[i].y - stars[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < threshold && stars[i].size > 0.8 && stars[j].size > 0.8) {
+              const opacity = (1 - dist / threshold) * 0.08;
+              ctx.beginPath();
+              ctx.moveTo(stars[i].x, stars[i].y);
+              ctx.lineTo(stars[j].x, stars[j].y);
+              ctx.strokeStyle = `rgba(108, 99, 255, ${opacity})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      let time = 0;
+      function animate() {
+        time++;
+        ctx.clearRect(0, 0, width, height);
+
+        stars.forEach(star => {
+          star.y -= star.speed;
+          if (star.y < -5) {
+            star.y = height + 5;
+            star.x = Math.random() * width;
+          }
+          // Subtle mouse parallax
+          const dx = (mouse.x - width / 2) * 0.00005 * star.size;
+          const dy = (mouse.y - height / 2) * 0.00005 * star.size;
+          drawStar({ ...star, x: star.x + dx * time, y: star.y + dy }, time);
+        });
+
+        drawConnections();
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', () => { resize(); createStars(Math.min(200, Math.floor(width * height / 8000))); });
+      document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+      resize();
+      createStars(Math.min(200, Math.floor(width * height / 8000)));
+      animate();
+    })();
+
+    // ─── CURSOR GLOW ─────────────────────────────────────────────────
+    const cursorGlow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', e => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // ─── SCROLL PROGRESS ─────────────────────────────────────────────
+    const scrollProgress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+
+    // ─── NAV SCROLL EFFECT ───────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ─── SCROLL REVEAL ───────────────────────────────────────────────
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), index * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ─── SMOOTH SCROLL ──────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
