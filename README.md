@@ -611,7 +611,7 @@ graph LR
 | 🥇 | **SRiJAN 2026** | **Winner** — Data & AI Track | University competition |
 | 🏅 | **Barclays HACK-O-HIRE** | **Top 8 Finalist** — 2025 | National hackathon |
 | 🥈 | **HackZ'24** | **1st Runner-Up** — Anna University | Top 20 from 500+ |
-| 🥉 | **Hack of Duty** | **2nd Runner-Up** — ACM-SIGKDD |
+| 🥉 | **Hack of Duty** | **2nd Runner-Up** — ACM-SIGKDD | National hackathon |
 
 
 </div>
@@ -635,7 +635,7 @@ graph LR
 <tr>
 <td>
 
-### 📄 IEEE CICCS-2025 —  Author
+### 📄 IEEE CICCS-2025 — First Author
 
 **"Real-Time Medical Waste Segregation using Vision Transformers and Edge AI Solutions"**
 
@@ -701,7 +701,13 @@ Proposed ROSE-V2, a task-aware encoder-decoder compression framework for edge-cl
 
 <br/><br/>
 
-<img src="https://github-profile-trophy.vercel.app/?username=Vishnugupta2711&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=4" alt="GitHub Trophies" width="95%"/>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Vishnugupta2711&theme=tokyonight" alt="Profile Details" width="95%"/>
+
+<br/><br/>
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Vishnugupta2711&theme=tokyonight" alt="Repos Per Language" width="32%"/>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Vishnugupta2711&theme=tokyonight" alt="Most Commit Language" width="32%"/>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Vishnugupta2711&theme=tokyonight&utcOffset=5.5" alt="Productive Time" width="32%"/>
 
 <br/>
 
