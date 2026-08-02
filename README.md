@@ -611,7 +611,7 @@ graph LR
 | 🥇 | **SRiJAN 2026** | **Winner** — Data & AI Track | University competition |
 | 🏅 | **Barclays HACK-O-HIRE** | **Top 8 Finalist** — 2025 | National hackathon |
 | 🥈 | **HackZ'24** | **1st Runner-Up** — Anna University | Top 20 from 500+ |
-| 🥉 | **Hack of Duty** | **2nd Runner-Up** — ACM-SIGKDD | National hackathon |
+| 🥉 | **Hack of Duty** | **2nd Runner-Up** — ACM-SIGKDD |
 
 
 </div>
@@ -635,7 +635,7 @@ graph LR
 <tr>
 <td>
 
-### 📄 IEEE CICCS-2025 — First Author
+### 📄 IEEE CICCS-2025 —  Author
 
 **"Real-Time Medical Waste Segregation using Vision Transformers and Edge AI Solutions"**
 
