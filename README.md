@@ -699,16 +699,6 @@ Proposed ROSE-V2, a task-aware encoder-decoder compression framework for edge-cl
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=Vishnugupta2711&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Frequency&color=6C63FF&line=00D4FF&point=FF6B6B" width="95%" alt="Activity Graph"/>
 
-<br/><br/>
-
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Vishnugupta2711&theme=tokyonight" alt="Profile Details" width="95%"/>
-
-<br/><br/>
-
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Vishnugupta2711&theme=tokyonight" alt="Repos Per Language" width="32%"/>
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Vishnugupta2711&theme=tokyonight" alt="Most Commit Language" width="32%"/>
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Vishnugupta2711&theme=tokyonight&utcOffset=5.5" alt="Productive Time" width="32%"/>
-
 <br/>
 
 <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Vishnugupta2711&theme=tokyonight&hide_border=true&layout=compact&langs_count=8" alt="Top Languages"/>
