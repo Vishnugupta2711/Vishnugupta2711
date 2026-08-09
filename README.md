@@ -684,6 +684,12 @@ Proposed ROSE-V2, a task-aware encoder-decoder compression framework for edge-cl
 
 <div align="center">
 
+<!-- GitHub Trophies -->
+<h3>🏆 GitHub Trophies</h3>
+<img src="https://github-trophies.vercel.app/?username=Vishnugupta2711&theme=tokyonight" alt="GitHub Trophies"/>
+
+<br/><br/>
+
 <table>
   <tr>
     <td>
@@ -698,6 +704,19 @@ Proposed ROSE-V2, a task-aware encoder-decoder compression framework for edge-cl
 <br/>
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=Vishnugupta2711&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Frequency&color=6C63FF&line=00D4FF&point=FF6B6B" width="95%" alt="Activity Graph"/>
+
+<br/>
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Vishnugupta2711&theme=tokyonight" alt="Repos per Language"/>
+    </td>
+    <td>
+      <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Vishnugupta2711&theme=tokyonight" alt="Profile Summary Stats"/>
+    </td>
+  </tr>
+</table>
 
 <br/>
 
